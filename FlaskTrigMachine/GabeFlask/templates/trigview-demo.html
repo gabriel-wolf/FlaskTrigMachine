@@ -12,6 +12,42 @@
     <meta charset="utf-8" />
     <title>{{ title }}</title>
 
+    <style>
+        .peq {
+            display: inline;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        /* Create two equal columns that floats next to each other */
+        .column {
+            float: left;
+            width: 50%;
+            padding: 10px;
+            height: 300px; /* Should be removed. Only for demonstration */
+        }
+
+        /* Clear floats after the columns */
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        #byte_content {
+            margin: 5px 0;
+            max-height: 100px;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+
+        #byte_range {
+            margin-top: 5px;
+        }
+    </style>
+
 </head>
 
 
@@ -33,7 +69,7 @@
     <span id="math-field" style="width: 150px;"></span>
     <input type="submit" value="Submit"><br>
 
-    <p>LaTeX of what you typed: <span id="latex"></span></p><br/>
+    <p>LaTeX of what you typed: <span id="latex"></span></p><br />
     <input style="display: none;" type="text" name="exprform" id="postform">
 </form>
 
@@ -44,7 +80,7 @@
         alert(s1);
         return s1;
     }
-   
+
 </script>
 
 
@@ -63,11 +99,11 @@
                 console.log(latex_to_js(mathField.latex()));
                 var baselatex = latex_to_js(mathField.latex());
                 var newnonlatex = baselatex.replace('\\cdot', '*');
-                var newnonlatex = newnonlatex.replace('pi','\\pi')
+                var newnonlatex = newnonlatex.replace('pi', '\\pi')
                 console.log(newnonlatex);
                 //console.log(getspan())
                 postform.value = newnonlatex;
-                setGraph1(mathField.latex());
+                //setGraph1(mathField.latex());
                 commandlatex = latex_to_js(mathField.latex());
 
                 (function () {
@@ -91,43 +127,65 @@
     });
 </script>
 
+<p id="hiddenmain" style="display: none;">{{maineq}}</p>
+<p id="hiddenx1" style="display: none;">{{x1}}</p>
+<p id="hiddenx2" style="display: none;">{{x2}}</p>
+
+<p id="hiddeninverse" style="display: none;">{{inverse}}</p>
 
 
-<body>
-    <h2>Main Solutions</h2>
-    Equation: {{maineq}}<br />
-    <h3>Inverse Solutions</h3>
-    Intertable domain: {{domainx}}<br />
-    x1 = {{x1}}<br />
-    x2 = {{x2}}<br />
-    Inverse: {{inverse}} <br />
-    <h3>Other Solutions</h3>
-    Periocity: {{periocity}}<br />
-    Simplified: {{simplify}}<br /><br />
-    <h2>Angle Equations</h2>
-    Quadrant: #{{quad}}<br />
-</body>
+<div class="row">
+    <div class="column">
+        <body>
+            <h2>Main Solutions</h2>
+            Equation: {{maineq}}<br />
+            <h3>Inverse Solutions</h3>
+            Intertable domain: {{domainx}}<br />
+            x1 = {{x1}}<br />
+            x2 = {{x2}}<br />
+            Inverse: {{inverse}} <br />
+            <h3>Other Solutions</h3>
+            Periocity: {{periocity}}<br />
+            Simplified: {{simplify}}<br /><br />
+            <h2>Angle Equations</h2>
+            Quadrant: #{{quad}}<br />
+        </body>
 
 
 
+    </div>
 
-<div id="calculator" style="width: 600px; height: 400px; display: none;"></div>
+    <div class="column">
+        <div id="calculator" style="width: 600px; height: 400px; "></div>
 
-<script>
-    var latexSpan = document.getElementById('latex');
-    var elt = document.getElementById('calculator');
-    var calculator = Desmos.GraphingCalculator(elt);
-    calculator.setExpression({ id: 'graph1', latex: "y=x" });
-    calculator.setExpression({ id: 'n', latex: 'n=1' });
-    // calculator.setExpression({id: 'n', sliderBounds: { min: 1, max: 10, step: 1}});
-    function setGraph1(latex) {
-        calculator.setExpression({ id: 'graph1', latex: latex });
-    }
-    function setgraphbyid(id, latex) {
-        calculator.setExpression({ id: id, latex: latex });
-    }
-</script>
+        <script>
+            var latexSpan = document.getElementById('latex');
+            var elt = document.getElementById('calculator');
+            var hiddenmain = document.getElementById('hiddenmain');
+            var hiddenx1 = document.getElementById('hiddenx1');
+            var hiddenx2 = document.getElementById('hiddenx2');
+            var hiddeninverse = document.getElementById('hiddeninverse');
+            var calculator = Desmos.GraphingCalculator(elt);
+            console.log(hiddenmain.innerHTML.slice(1, hiddenmain.innerHTML.length - 1))
+            calculator.setExpression({ id: 'graph1', latex: hiddenmain.innerHTML.slice(1, hiddenmain.innerHTML.length - 1) });
+            calculator.setExpression({ id: 'n', latex: 'n=1' });
+            // calculator.setExpression({id: 'n', sliderBounds: { min: 1, max: 10, step: 1}});
+            function setGraph1(latex) {
+                calculator.setExpression({ id: 'graph1', latex: latex });
+            }
+            function setgraphbyid(id, latex) {
+                calculator.setExpression({ id: id, latex: latex });
+            }
 
+            setgraphbyid('graph2', "x=" + hiddenx1.innerHTML.slice(1, hiddenx1.innerHTML.length - 1));
+            setgraphbyid('graph3', "x=" + hiddenx2.innerHTML.slice(1, hiddenx2.innerHTML.length - 12));
+
+            //setgraphbyid('graph4', hiddeninverse.innerHTML.slice(1, hiddeninverse.innerHTML.length - 1));
+
+        </script>
+
+    </div>
+</div>
 
 
 </html>
