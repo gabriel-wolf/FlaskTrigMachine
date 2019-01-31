@@ -63,6 +63,7 @@
                 console.log(latex_to_js(mathField.latex()));
                 var baselatex = latex_to_js(mathField.latex());
                 var newnonlatex = baselatex.replace('\\cdot', '*');
+                var newnonlatex = newnonlatex.replace('pi','\\pi')
                 console.log(newnonlatex);
                 //console.log(getspan())
                 postform.value = newnonlatex;
@@ -99,7 +100,7 @@
     Intertable domain: {{domainx}}<br />
     x1 = {{x1}}<br />
     x2 = {{x2}}<br />
-    Inverse: {{inverse}}<br />
+    Inverse: {{inverse}} <br />
     <h3>Other Solutions</h3>
     Periocity: {{periocity}}<br />
     Simplified: {{simplify}}<br /><br />

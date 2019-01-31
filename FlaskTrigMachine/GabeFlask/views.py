@@ -41,7 +41,7 @@ x2 = "$8 n \pi^{2} / 3 + 2 \pi^{2}$"
 domainx = "$\left [ 2 \pi^{2} / 3, \quad 2 \pi^{2}\\right ]$"
 periocity = "$8 \pi^{2} / 3$"
 quad = "1"
-inversed = "$\left [ 4 \pi \left(- \{asin}{\left (x \\right )} + \pi\\right) / 3, \quad 4 \pi \operatorname{asin}{\left (x \right )} / 3\right ]$"
+inversed = "$\left [ 4 \pi \left(- \{asin}{\left (x \right )} + \pi\right) / 3, \quad 4 \pi \{asin}{\left (x \right )} / 3\right ]$"
 simplified = "$\sin{\left (3 x / 4 \pi \\right )}$"
 
 
@@ -106,7 +106,9 @@ def runallWithExpr(getexpr):
         quad = 4 
     else:
        quad = "None"
+    print(inversesolve(expr))
     inversed = latex(inversesolve(expr), mode='inline')
+    print(inversed)
     simplified = latex(simplifyme(expr), mode='inline')
     
     return([maineq, x1, x2, domainx, periocity, quad, inversed, simplified])
@@ -144,7 +146,7 @@ def form_example():
 		domainx = "$\left [ 2 \pi^{2} / 3, \quad 2 \pi^{2}\\right ]$",
 		periocity = "$8 \pi^{2} / 3$",
 		quad = "1",
-		inverse = "$\left [ 4 \pi \left(- \operatorname{asin}{\left (x \\right )} + \pi\\right) / 3, \quad 4 \pi \operatorname{asin}{\left (x \right )} / 3\right ]$",
+		inverse = "$\left [ 4 \pi \left(- \operatorname{asin}{\left (x \\right )} + \pi\\right) / 3, \quad 4 \pi \operatorname{asin}{\left (x \\right )} / 3\\right ]$",
 		simplify = "$\sin{\left (3 x / 4 \pi \\right )}$")
 
 
@@ -177,7 +179,7 @@ def trigtemp():
 		domainx = "$\left [ 2 \pi^{2} / 3, \quad 2 \pi^{2}\\right ]$",
 		periocity = "$8 \pi^{2} / 3$",
 		quad = "1",
-		inverse = "$\left [ 4 \pi \left(- \operatorname{asin}{\left (x \\right )} + \pi\\right) / 3, \quad 4 \pi \operatorname{asin}{\left (x \right )} / 3\right ]$",
+		inverse = "$\left [ 4 \pi \left(- \operatorname{asin}{\left (x \\right )} + \pi\\right) / 3, \quad 4 \pi \operatorname{asin}{\left (x \\right )} / 3\\right ]$",
 		simplify = "$\sin{\left (3 x / 4 \pi \\right )}$")
 
 
