@@ -1,0 +1,125 @@
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>c8d5f718-a5da-4b1a-b390-f86a4cb02fb3</ProjectGuid>
+    <ProjectHome>.</ProjectHome>
+    <ProjectTypeGuids>{789894c7-04a9-4a11-a6b5-3f4435165112};{1b580a1a-fdb3-4b32-83e1-6407eb2722e6};{349c5851-65df-11da-9384-00065b846f21};{888888a0-9f3d-457c-b088-3a5042f75d52}</ProjectTypeGuids>
+    <StartupFile>runserver.py</StartupFile>
+    <SearchPath>
+    </SearchPath>
+    <WorkingDirectory>.</WorkingDirectory>
+    <LaunchProvider>Web launcher</LaunchProvider>
+    <WebBrowserUrl>http://localhost</WebBrowserUrl>
+    <OutputPath>.</OutputPath>
+    <SuppressCollectPythonCloudServiceFiles>true</SuppressCollectPythonCloudServiceFiles>
+    <Name>FlaskTrigMachine</Name>
+    <RootNamespace>FlaskTrigMachine</RootNamespace>
+    <InterpreterId>MSBuild|env|$(MSBuildProjectFullPath)</InterpreterId>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>true</DebugSymbols>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="runserver.py" />
+    <Compile Include="GabeFlask\views.py" />
+    <Compile Include="GabeFlask\__init__.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Flask-Trig-Machine.py.pyproj" />
+    <Content Include="GabeFlask\static\sources\jquery-3.3.1.min.js" />
+    <Content Include="GabeFlask\static\sources\latex-to-js.js" />
+    <Content Include="GabeFlask\static\sources\mathquill-0.10.1\.exists--used_by_Makefile" />
+    <Content Include="GabeFlask\static\sources\mathquill-0.10.1\font\Symbola-basic.eot" />
+    <Content Include="GabeFlask\static\sources\mathquill-0.10.1\font\Symbola-basic.ttf" />
+    <Content Include="GabeFlask\static\sources\mathquill-0.10.1\font\Symbola-basic.woff" />
+    <Content Include="GabeFlask\static\sources\mathquill-0.10.1\font\Symbola-basic.woff2" />
+    <Content Include="GabeFlask\static\sources\mathquill-0.10.1\font\Symbola.eot" />
+    <Content Include="GabeFlask\static\sources\mathquill-0.10.1\font\Symbola.otf" />
+    <Content Include="GabeFlask\static\sources\mathquill-0.10.1\font\Symbola.svg" />
+    <Content Include="GabeFlask\static\sources\mathquill-0.10.1\font\Symbola.ttf" />
+    <Content Include="GabeFlask\static\sources\mathquill-0.10.1\font\Symbola.woff" />
+    <Content Include="GabeFlask\static\sources\mathquill-0.10.1\font\Symbola.woff2" />
+    <Content Include="GabeFlask\static\sources\mathquill-0.10.1\mathquill-basic.css" />
+    <Content Include="GabeFlask\static\sources\mathquill-0.10.1\mathquill-basic.js" />
+    <Content Include="GabeFlask\static\sources\mathquill-0.10.1\mathquill.css" />
+    <Content Include="GabeFlask\static\sources\mathquill-0.10.1\mathquill.js" />
+    <Content Include="GabeFlask\static\sources\mathquill-0.10.1\mathquill.min.js" />
+    <Content Include="GabeFlask\static\sources\mathquill-0.10.1\mathquill.test.js" />
+    <Content Include="GabeFlask\templates\index.html" />
+    <Content Include="GabeFlask\templates\result.html" />
+    <Content Include="GabeFlask\templates\trigview-demo.html" />
+    <Content Include="GabeFlask\templates\_formhelpers.html" />
+    <Content Include="GabeFlask\__pycache__\views.cpython-37.pyc" />
+    <Content Include="GabeFlask\__pycache__\__init__.cpython-37.pyc" />
+    <Content Include="requirements.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Interpreter Include="..\..\FlaskWebProject1\FlaskWebProject1\env\">
+      <Id>env</Id>
+      <Version>3.7</Version>
+      <Description>env (Anaconda 5.3.1)</Description>
+      <InterpreterPath>Scripts\python.exe</InterpreterPath>
+      <WindowsInterpreterPath>Scripts\pythonw.exe</WindowsInterpreterPath>
+      <PathEnvironmentVariable>PYTHONPATH</PathEnvironmentVariable>
+      <Architecture>X64</Architecture>
+    </Interpreter>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="GabeFlask\" />
+    <Folder Include="GabeFlask\static\" />
+    <Folder Include="GabeFlask\static\sources\" />
+    <Folder Include="GabeFlask\static\sources\mathquill-0.10.1\" />
+    <Folder Include="GabeFlask\static\sources\mathquill-0.10.1\font\" />
+    <Folder Include="GabeFlask\templates\" />
+    <Folder Include="GabeFlask\__pycache__\" />
+    <Folder Include="obj\" />
+    <Folder Include="obj\Debug\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.Web.targets" />
+  <!-- Specify pre- and post-build commands in the BeforeBuild and 
+       AfterBuild targets below. -->
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <AutoAssignPort>True</AutoAssignPort>
+          <UseCustomServer>True</UseCustomServer>
+          <CustomServerUrl>http://localhost</CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}" User="">
+        <WebProjectProperties>
+          <StartPageUrl>
+          </StartPageUrl>
+          <StartAction>CurrentPage</StartAction>
+          <AspNetDebugging>True</AspNetDebugging>
+          <SilverlightDebugging>False</SilverlightDebugging>
+          <NativeDebugging>False</NativeDebugging>
+          <SQLDebugging>False</SQLDebugging>
+          <ExternalProgram>
+          </ExternalProgram>
+          <StartExternalURL>
+          </StartExternalURL>
+          <StartCmdLineArguments>
+          </StartCmdLineArguments>
+          <StartWorkingDirectory>
+          </StartWorkingDirectory>
+          <EnableENC>False</EnableENC>
+          <AlwaysStartWebServerOnDebug>False</AlwaysStartWebServerOnDebug>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

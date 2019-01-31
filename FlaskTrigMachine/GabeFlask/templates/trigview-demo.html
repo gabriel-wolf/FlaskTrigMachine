@@ -1,0 +1,151 @@
+﻿<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/sources/mathquill-0.10.1/mathquill.css">
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script type="text/javascript" src="/static/sources/mathquill-0.10.1/mathquill.js"></script>
+    <script src="/static/sources/latex-to-js.js"></script>
+    <script src="https://www.desmos.com/api/v1.2/calculator.js?apiKey=dcb31709b452b1cf9dc26972add0fda6"></script>
+
+    <meta charset="utf-8" />
+    <title>{{ title }}</title>
+
+</head>
+
+
+
+
+
+
+
+<style>
+    .math-field {
+        width: 9.2em;
+        font-size: 1.2em;
+        background: white;
+    }
+</style>
+
+<form method="POST">
+    Type your equation here:
+    <span id="math-field" style="width: 150px;"></span>
+    <input type="submit" value="Submit"><br>
+
+    <p>LaTeX of what you typed: <span id="latex"></span></p><br/>
+    <input style="display: none;" type="text" name="exprform" id="postform">
+</form>
+
+
+<script type="text/javascript">
+    function getspan() {
+        var s1 = document.getElementById('math-field').innerHTML;
+        alert(s1);
+        return s1;
+    }
+   
+</script>
+
+
+<script>
+    var mathFieldSpan = document.getElementById('math-field');
+    var latexSpan = document.getElementById('latex');
+    var postform = document.getElementById('postform');
+
+    var MQ = MathQuill.getInterface(2); // for backcompat
+    var mathField = MQ.MathField(mathFieldSpan, {
+        spaceBehavesLikeTab: true, // configurable
+        handlers: {
+            edit: function () { // useful event handlers
+                latexSpan.textContent = mathField.latex(); // simple API
+                console.log(mathField.latex());
+                console.log(latex_to_js(mathField.latex()));
+                var baselatex = latex_to_js(mathField.latex());
+                var newnonlatex = baselatex.replace('\\cdot', '*');
+                console.log(newnonlatex);
+                //console.log(getspan())
+                postform.value = newnonlatex;
+                setGraph1(mathField.latex());
+                commandlatex = latex_to_js(mathField.latex());
+
+                (function () {
+                    var head = document.getElementsByTagName("head")[0], script;
+                    script = document.createElement("script");
+                    script.type = "text/x-mathjax-config";
+                    script[(window.opera ? "innerHTML" : "text")] =
+                        "MathJax.Hub.Config({\n" +
+                        "  tex2jax: { inlineMath: [['$','$'], ['\\\\(','\\\\)']] }\n" +
+                        "});";
+                    head.appendChild(script);
+                    script = document.createElement("script");
+                    script.type = "text/javascript";
+                    script.src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML";
+                    head.appendChild(script);
+                })();
+
+
+            }
+        }
+    });
+</script>
+
+
+
+<body>
+    <h2>Main Solutions</h2>
+    Equation: {{maineq}}<br />
+    <h3>Inverse Solutions</h3>
+    Intertable domain: {{domainx}}<br />
+    x1 = {{x1}}<br />
+    x2 = {{x2}}<br />
+    Inverse: {{inverse}}<br />
+    <h3>Other Solutions</h3>
+    Periocity: {{periocity}}<br />
+    Simplified: {{simplify}}<br /><br />
+    <h2>Angle Equations</h2>
+    Quadrant: #{{quad}}<br />
+</body>
+
+
+
+
+<div id="calculator" style="width: 600px; height: 400px; display: none;"></div>
+
+<script>
+    var latexSpan = document.getElementById('latex');
+    var elt = document.getElementById('calculator');
+    var calculator = Desmos.GraphingCalculator(elt);
+    calculator.setExpression({ id: 'graph1', latex: "y=x" });
+    calculator.setExpression({ id: 'n', latex: 'n=1' });
+    // calculator.setExpression({id: 'n', sliderBounds: { min: 1, max: 10, step: 1}});
+    function setGraph1(latex) {
+        calculator.setExpression({ id: 'graph1', latex: latex });
+    }
+    function setgraphbyid(id, latex) {
+        calculator.setExpression({ id: id, latex: latex });
+    }
+</script>
+
+
+
+</html>
+
+
+
+<script>
+    (function () {
+        var head = document.getElementsByTagName("head")[0], script;
+        script = document.createElement("script");
+        script.type = "text/x-mathjax-config";
+        script[(window.opera ? "innerHTML" : "text")] =
+            "MathJax.Hub.Config({\n" +
+            "  tex2jax: { inlineMath: [['$','$'], ['\\\\(','\\\\)']] }\n" +
+            "});";
+        head.appendChild(script);
+        script = document.createElement("script");
+        script.type = "text/javascript";
+        script.src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML";
+        head.appendChild(script);
+    })();
+</script>
